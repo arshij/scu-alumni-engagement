@@ -41,12 +41,95 @@
 
     <!-- Page Content -->
     <div>
+      <p <br /> <br /> </p>
+      <h4 style="padding-left: 1cm" id="Create an Event"> <b> Create an Event </b> </h4>
+      <p <br /> </p>
+      <!--
+      <p style="padding-left: 1cm" id="Organizer"> Organizer: </p>
+      <p style="padding-left: 1cm" id="Phone"> Phone #: </p>
+      <p style="padding-left: 1cm" id="Date"> Date: </p>
+      <p style="padding-left: 1cm" id="Location"> Location: </p>
+      <p style="padding-left: 1cm" id="Email"> Email: </p>
+      <p style="padding-left: 1cm" id="Event Title"> Event Title: </p>
+      <p style="padding-left: 1cm" id="Time"> Time: </p>
+      <p style="padding-left: 1cm" id="Description"> Description: </p> -->
 
+
+      <form onsubmit="return printForm()">
+
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Organizer" class="col-sm-2 col-form-label">Organizer:</label>
+    <div class="col-sm-7">
+      <input type="organizer" class="form-control" id="Organizer" placeholder="Organizer">
     </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Phone" class="col-sm-2 col-form-label">Phone:</label>
+    <div class="col-sm-7">
+      <input type="Phone" class="form-control" id="Phone" placeholder="(###) ###-####">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Date" class="col-sm-2 col-form-label">Date:</label>
+    <div class="col-sm-7">
+      <input type="Date" class="form-control" id="Date" placeholder="mm/dd/yyyy">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Location" class="col-sm-2 col-form-label">Location:</label>
+    <div class="col-sm-7">
+      <input type="Location" class="form-control" id="Location" placeholder="Location">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Email" class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-7">
+      <input type="Email" class="form-control" id="Email" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Event Title" class="col-sm-2 col-form-label">Event Title:</label>
+    <div class="col-sm-7">
+      <input type="Event Title" class="form-control" id="Event Title" placeholder="Event Title">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Time" class="col-sm-2 col-form-label">Time:</label>
+    <div class="col-sm-7">
+      <input type="Time" class="form-control" id="Time" placeholder="Time">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label style="padding-left: 2cm" for="Description" class="col-sm-2 col-form-label">Description:</label>
+    <div class="col-sm-7">
+      <input type="Description" class="form-control" id="Description" placeholder="Description">
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <div class="col-sm-7">
+      <button style="background-color:red" type="submit" class="btn btn-primary">Add</button>
+    </div>
+  </div>
+
+</form>
+    </div>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="admincreate.js"></script>
 
   </body>
 
