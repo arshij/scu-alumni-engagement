@@ -1,0 +1,21 @@
+body {
+    background-image: url("images/reunion.jpg");
+    height:800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#loginbox {
+    height:300px;
+    width:600px;
+    text-align: center;
+    margin-top: 15%;
+    background: rgba(248, 249, 249, .7);
+}
+
+#loginelements {
+    display: inline-block;
+    margin-top:15%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
