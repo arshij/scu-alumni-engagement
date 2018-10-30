@@ -13,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-      
+
   </head>
 
   <body>
@@ -49,33 +49,15 @@
         <h2>Create an Event</h2>
         <form onsubmit="printForm()" style="margin-top:5%;">
           <div class="form-group row">
-            <label style="padding-left: 2cm" for="Organizer" class="col-sm-2 col-form-label">Organizer:</label>
-            <div class="col-sm-7">
-              <input type="organizer" class="form-control" id="Organizer" placeholder="Organizer">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label style="padding-left: 2cm" for="Phone" class="col-sm-2 col-form-label">Phone:</label>
-            <div class="col-sm-7">
-              <input type="Phone" class="form-control" id="Phone" placeholder="(###) ###-####">
-            </div>
-          </div>
-          <div class="form-group row">
             <label style="padding-left: 2cm" for="Date" class="col-sm-2 col-form-label">Date:</label>
             <div class="col-sm-7">
               <input type="Date" class="form-control" id="Date" placeholder="mm/dd/yyyy">
             </div>
           </div>
           <div class="form-group row">
-            <label style="padding-left: 2cm" for="Location" class="col-sm-2 col-form-label">Location:</label>
+            <label style="padding-left: 2cm" for="Time" class="col-sm-2 col-form-label">Time:</label>
             <div class="col-sm-7">
-              <input type="Location" class="form-control" id="Location" placeholder="Location">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label style="padding-left: 2cm" for="Email" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-7">
-              <input type="Email" class="form-control" id="Email" placeholder="Email">
+              <input type="Time" class="form-control" id="Time" placeholder="--:-- (am/pm) (timezone)">
             </div>
           </div>
           <div class="form-group row">
@@ -85,17 +67,30 @@
             </div>
           </div>
           <div class="form-group row">
-            <label style="padding-left: 2cm" for="Time" class="col-sm-2 col-form-label">Time:</label>
-            <div class="col-sm-7">
-              <input type="Time" class="form-control" id="Time" placeholder="Time">
-            </div>
-          </div>
-          <div class="form-group row">
             <label style="padding-left: 2cm" for="Description" class="col-sm-2 col-form-label">Description:</label>
             <div class="col-sm-7">
               <input type="Description" class="form-control" id="Description" placeholder="Description">
             </div>
           </div>
+          <div class="form-group row">
+            <label style="padding-left: 2cm" for="Location" class="col-sm-2 col-form-label">Location:</label>
+            <div class="col-sm-7">
+              <input type="Location" class="form-control" id="Location" placeholder="Location">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label style="padding-left: 2cm" for="Organizer" class="col-sm-2 col-form-label">Organizer:</label>
+            <div class="col-sm-7">
+              <input type="organizer" class="form-control" id="Organizer" placeholder="Organizer">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label style="padding-left: 2cm" for="Email" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-7">
+              <input type="Email" class="form-control" id="Email" placeholder="Email">
+            </div>
+          </div>
+
           <div class="form-group row">
             <div style="padding-left: 2cm" class="col-sm-7">
               <button type="submit" class="btn btn-info">Add</button>
