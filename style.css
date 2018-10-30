@@ -19,3 +19,16 @@ body {
     padding-left: 15%;
     padding-right: 15%;
 }
+
+.btn-info
+{
+  background-color: #99303E;
+  border-color: #99303E;
+}
+
+.btn-info:hover
+{
+  background-color: white;
+  border-color: #99303E;
+  color:#99303E
+}
