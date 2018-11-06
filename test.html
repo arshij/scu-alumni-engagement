@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            Test stuff
+        </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    </head>
+    <body onload="createEvent('01-01-2019','5:00 pm','testevent2','this is a test','SCU campus','Father Engh','fengh@scu.edu');">
+        
+        <script>
+            function createEvent(date,time,name,description,location,postedby,email) {
+                alert("hello")
+                $.ajax({
+                    cache: false,
+                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'type' : 'POST',
+                    'data' : {
+			'query' : 'create',
+                        'eventdate': date,
+			'eventtime': time,
+			'eventname': name,
+			'eventdescription':description,
+			'eventlocation': location,
+			'eventpostedby': postedby,
+			'eventemail': email
+                    },
+                    'success' : function(data) { 
+                        console.log(data)
+                        var parsed = JSON.parse(data)
+                    },
+                    'error' : function(request,error) {
+                        alert("Request: "+JSON.stringify(request));
+                    }
+                });
+            }
+            
+
+          
+        </script>
+    </body>
+</html> 

@@ -7,18 +7,19 @@ $("#addevent").click(function(){
     var postedby = $( "#postedby" ).val();
     var email = $( "#email" ).val();
     $.ajax({
-      url: "ajax.aspx",
-      type: "post", //send it through get method
-      data: { 
-        eventdate: date,
-        eventtime: time,
-        eventtitle: title,
-        eventdescription: description,
-        eventlocation: location,
-        eventorganizer: postedby,
-        eventemail: email
+      'url': "http://students.engr.scu.edu/~nsampema/api.php",
+      'type': "POST", //send it through get method
+      'data': {
+	'query' : 'create',
+        'eventdate': date,
+        'eventtime': time,
+        'eventtitle': title,
+        'eventdescription': description,
+        'eventlocation': location,
+        'eventorganizer': postedby,
+        'eventemail': email
       },
-      success: function(response) {
+      success: function(data) {
         console.log("Success");
       }
     });
