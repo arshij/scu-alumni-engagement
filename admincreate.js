@@ -6,21 +6,31 @@ $("#addevent").click(function(){
     var location = $( "#location" ).val();
     var postedby = $( "#postedby" ).val();
     var email = $( "#email" ).val();
-    $.ajax({
-      'url': "http://students.engr.scu.edu/~nsampema/api.php",
-      'type': "POST", //send it through get method
-      'data': {
-	'query' : 'create',
-        'eventdate': date,
-        'eventtime': time,
-        'eventtitle': title,
-        'eventdescription': description,
-        'eventlocation': location,
-        'eventorganizer': postedby,
-        'eventemail': email
-      },
-      success: function(data) {
-        console.log("Success");
-      }
-    });
+    createEvent(date,time,name,description,location,postedby,email);
 });
+
+function createEvent(date,time,name,description,location,postedby,email) {
+    console.log("hello");
+    $.ajax({
+        cache: false,
+        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+        'type' : 'POST',
+        'data' : {
+			'query' : 'create',
+            'eventdate': date,
+			'eventtime': time,
+			'eventname': name,
+			'eventdescription':description,
+			'eventlocation': location,
+			'eventpostedby': postedby,
+			'eventemail': email
+        },
+        'success' : function(data) { 
+            console.log(data)
+            var parsed = JSON.parse(data)
+        },
+        'error' : function(request,error) {
+            alert("Request: "+JSON.stringify(request));
+        }
+    });
+}
