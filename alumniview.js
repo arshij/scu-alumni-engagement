@@ -20,14 +20,32 @@ var myEvents = [
 
 // Appending data to HTML table
 var tbody = document.getElementById('tbody');
+var title = document.getElementById('regTitle');
 
 for (var i = 0; i < myEvents.length; i++) {
-    var tr = "<tr>";
-    tr += "<td>" + myEvents[i].date + "</td>" + "<td>" + myEvents[i].time + "</td>" + "<td>" + myEvents[i].name + "</td>" + "<td>" + myEvents[i].description + "</td>" + "<td>" + myEvents[i].location + "</td>" + "<td>" + myEvents[i].postedby + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" data-toggle="modal" data-target="#registerpopup' + i +  '">Register</button>' 
-        
-    /* Modal data */
-    + '<div class="modal fade" id="registerpopup' + i + '" role="dialog">' + '<div class="modal-dialog">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal">&times;</button>' + '</div>' + '<div class="modal-body">' + '<h4>Register for ' + myEvents[i].name + '</h4>' + '<form>' + '<div class="row">' + '<div class="col">' + '<input type="text" class="form-control" id="firstname" placeholder="First name">' + '</div>' + '<div class="col">' + '<input type="text" class="form-control" id="lastname" placeholder="Last name">' + '</div>' + '</div>' + '<br>' + '<div class="row">' + '<div class="col">' + '<input type="text" class="form-control" id="registeremail" placeholder="Email Address">' + '</div>' + '<div class="col">' + '<input type="text" class="form-control" id="gradyear" placeholder="Graduation Year">' + '</div>' + '</div>' + '<br>' + '<div class="row">' + '<div class="col">' + '<label for="guests">Guests:</label>' + '<input type="text" class="form-control" id="guests" placeholder="Number of Guests">' + '</div>' + '</div>' + '</form>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#registerclose">Register</button>' + '</div>' + '</div>' + '</div>' + '</div>' 
-        
-    + "</td>" + "</tr>";
+    var tr = '<tr>';
+    tr += "<td>" + myEvents[i].date + "</td>" + "<td>" + myEvents[i].time + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].name + "'>" + myEvents[i].name + "</td>" + "<td>" + myEvents[i].description + "</td>" + "<td>" + myEvents[i].location + "</td>" + "<td>" + myEvents[i].postedby + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="register(' + i + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
     tbody.innerHTML += tr;
 }
+
+function register(index) {
+    var eventname = myEvents[index].name;
+    window.sessionStorage.setItem('eventname', myEvents[index].name);
+}
+
+$("#registerbutton").click(function() {
+        var eventname = window.sessionStorage.getItem('eventname');
+        var firstname = $( "#firstname" ).val();
+        var lastname = $( "#lastname" ).val();
+        var registeremail = $( "#registeremail" ).val();
+        var gradyear = $( "#gradyear" ).val();
+        var guests = $( "#guests" ).val();
+        console.log(firstname + lastname + registeremail + gradyear + guests + eventname);
+        
+        // Clear input text fields
+        var firstname = $( "#firstname" ).val('');
+        var lastname = $( "#lastname" ).val('');
+        var registeremail = $( "#registeremail" ).val('');
+        var gradyear = $( "#gradyear" ).val('');
+        var guests = $( "#guests" ).val('');
+    });
