@@ -48,4 +48,4 @@ $("#registerbutton").click(function() {
         var registeremail = $( "#registeremail" ).val('');
         var gradyear = $( "#gradyear" ).val('');
         var guests = $( "#guests" ).val('');
-    });
+});
