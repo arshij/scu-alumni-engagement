@@ -22,8 +22,23 @@ var attendees = [
 },
 ];
 
+var myEvents = [
+{
+    "EVENTNAME": "First Friday Mass and Lunch",
+    "EVENTDATE" : "Arshi",
+    "EVENTTIME" : "Jujara",
+    "EVENTDESCRIPTION" : "2019",
+    "EVENTLOCATION" : "ajujara@scu.edu",
+    "EVENTPOSTEDBY" : "Me"
+}
+];
+
+$(document).ready(function(){
+    viewEvents(filltable);
+});
+
 function viewEvents(filltable) {
-	console.log("attempting event registration");
+	console.log("Alumni dashboard: view events");
     parsed =[]
     $.ajax({
         cache: false,
@@ -53,16 +68,19 @@ function filltable(jsondata){
 
     for (var i = 0; i < myEvents.length; i++) {
         var tr = '<tr>';
-        tr += "<td>" + myEvents[i].date + "</td>" + "<td>" + myEvents[i].time + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].name + "'>" + myEvents[i].name + "</td>" + "<td>" + myEvents[i].description + "</td>" + "<td>" + myEvents[i].location + "</td>" + "<td>" + myEvents[i].postedby + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="register(' + i + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
+        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="register(' + i + ",'" + myEvents[i].EVENTNAME + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
-    function register(index) {
-        attendeelist.innerHTML = '';
-        var eventname = myEvents[index].name;
-        window.sessionStorage.setItem('eventname', myEvents[index].name);
-        window.sessionStorage.setItem('attendeeevent', myEvents[index].name);
-        attendeeList();
-    }
+}
+
+
+function register(index, name) {
+    attendeelist.innerHTML = '';
+    var eventname = name;
+    console.log("In register: " + eventname);
+    window.sessionStorage.setItem('eventname', eventname);
+    window.sessionStorage.setItem('attendeeevent', eventname);
+    attendeeList();
 }
 
 function attendeeList() {
@@ -95,8 +113,4 @@ $("#registerbutton").click(function() {
         var registeremail = $( "#registeremail" ).val('');
         var gradyear = $( "#gradyear" ).val('');
         var guests = $( "#guests" ).val('');
-});
-
-$(document).ready(function(){
-    viewEvents(filltable);
 });
