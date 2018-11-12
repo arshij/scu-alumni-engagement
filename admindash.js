@@ -18,9 +18,9 @@
 }
 ];*/
 
-var imported = document.createElement('script');
-imported.src = 'api.js';
-document.head.appendChild(imported);
+//var imported = document.createElement('script');
+//imported.src = 'api.js';
+//document.head.appendChild(imported);
 
 $(document).ready(function(){
     viewEvents(filltable);
