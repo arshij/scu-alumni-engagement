@@ -25,3 +25,14 @@
   border-color: #99303E;
   color:#99303E
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #99303E;
+    color: lightgrey;
+    font-size: 10px;
+    text-align: center;
+}
