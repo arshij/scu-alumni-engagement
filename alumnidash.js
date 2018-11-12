@@ -46,6 +46,7 @@ function viewEvents(filltable) {
 
 function filltable(jsondata){
     var myEvents = jsondata;
+    console.log("Events: " + myEvents);
     var tbody = document.getElementById('tbody');
     var title = document.getElementById('regTitle');
     var attendeelist = document.getElementById('attendeelist');
@@ -55,14 +56,13 @@ function filltable(jsondata){
         tr += "<td>" + myEvents[i].date + "</td>" + "<td>" + myEvents[i].time + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].name + "'>" + myEvents[i].name + "</td>" + "<td>" + myEvents[i].description + "</td>" + "<td>" + myEvents[i].location + "</td>" + "<td>" + myEvents[i].postedby + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="register(' + i + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
-}
-
-function register(index) {
-    attendeelist.innerHTML = '';
-    var eventname = myEvents[index].name;
-    window.sessionStorage.setItem('eventname', myEvents[index].name);
-    window.sessionStorage.setItem('attendeeevent', myEvents[index].name);
-    attendeeList();
+    function register(index) {
+        attendeelist.innerHTML = '';
+        var eventname = myEvents[index].name;
+        window.sessionStorage.setItem('eventname', myEvents[index].name);
+        window.sessionStorage.setItem('attendeeevent', myEvents[index].name);
+        attendeeList();
+    }
 }
 
 function attendeeList() {
