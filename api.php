@@ -55,7 +55,17 @@
                     $response = database_query("INSERT INTO attendees VALUES('$eventid','$attendeeemail',' $attendeename')");
                     
                     break;
-                
+                    
+                case 'updatestatus':
+			$eventid = $_POST['eventid'];
+			if ($_POST['status'] == "True"){
+				$response = database_query("Update events SET eventapproved = 'True' WHERE eventid = '$eventid'");
+			
+			}
+			else{
+				$response = database_query("DELETE FROM events WHERE eventid = '$eventid'");
+			}
+			break;
                 case 'getevents':
 			$response = perform_query("SELECT * FROM events where eventapproved = 'True'");
 			echo $response;
@@ -86,7 +96,7 @@
     }  
     function perform_query($sql_query) {
         //convert to text to send to frontend
-        return json_encode(database_query_query(response));
+        return json_encode(database_query($sql_query));
     }
     
     function get_eventid($eventname) {
@@ -104,8 +114,6 @@
         $query = oci_parse($conn, $sql_query);
         $response = [];
 	$kbool = oci_execute($query, OCI_COMMIT_ON_SUCCESS);
-	echo oci_num_rows($query);
-	echo $kbool;
         if ($kbool) {
             while($row = oci_fetch_array($query,OCI_ASSOC)) {
                 array_push($response, $row);

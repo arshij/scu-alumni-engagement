@@ -24,6 +24,30 @@ function createEvent(date,time,name,description,location,postedby,email) {
     });
 }
 
+function verifylogin(username,studentid,verify) {
+	console.log("attempting event registration");
+		parsed =[]
+                $.ajax({
+                    cache: false,
+                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'type' : 'POST',
+		    'datatype' : "JSON",
+                    'data' : {
+			'query' : 'login',
+		        'username': username,
+			'studentid': studentid
+                    },
+                    'success' : function(data) {
+			var parsed = JSON.parse(data);
+			verify(parsed);
+                    },
+                    'error' : function(request,error) {
+                        alert("Request: "+JSON.stringify(request));
+                    }
+                    
+                });
+}
+
 function registerEvent(eventID,name,email) {
 	console.log("attempting event regisration");
 	$.ajax({
@@ -59,16 +83,17 @@ function viewEvents(filltable) {
 			'query' : 'getevents'
                     },
                     'success' : function(data) {
-			var parsed = JSON.parse(data)
-			filltable(data)
+			var parsed = JSON.parse(data);
+			filltable(parsed);
                     },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
                     }
                     
                 });
-		return parsed;
 }
+
+
 
 function viewUnapproved() {
 	console.log("attempting event registration");
@@ -80,9 +105,8 @@ function viewUnapproved() {
 			'query' : 'getunapproved'
                     },
                     'success' :function(data) {
-			var parsed = JSON.parse(data)
-			filltable(data)
-                    },
+			var parsed = JSON.parse(data);
+			filltable(parsed);
                     },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
