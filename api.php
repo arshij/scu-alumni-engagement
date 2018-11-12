@@ -5,6 +5,17 @@
 	
             $response = '';
             switch ($_POST['query']) {
+		case 'login':
+		   $username = $_POST['username'];
+		   $studentid = $_POST['studentid'];
+		   $response = "{authenticated: 'False'}";
+		   if(verify_user($username,$studentid)){
+			$response = "{authenticated: 'True'}";
+		   
+		   }
+		   echo $response;
+            
+            
                 case 'create':
                     // http://students.engr.scu.edu/~nsampema/api.php
                     
@@ -15,60 +26,97 @@
 		    $eventlocation  =$_POST['eventlocation'];
 		    $eventpostedby  =$_POST['eventpostedby'];
 		    $eventemail  =$_POST['eventemail'];
-                    $response = perform_query("INSERT INTO events VALUES('$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail')");
-                    
+		    $eventid = get_eventid($eventname);
+		    $eventapproved = "True";
+                    $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
                     break;
+                
+                case 'createunapproved':
+			
+                    $eventdate =  $_POST['eventdate'];
+		    $eventtime  =$_POST['eventtime'];
+		    $eventname  =$_POST['eventname'];
+		    $eventdescription  =$_POST['eventdescription'];
+		    $eventlocation  =$_POST['eventlocation'];
+		    $eventpostedby  =$_POST['eventpostedby'];
+		    $eventemail  =$_POST['eventemail'];
+		    $eventid = get_eventid($eventname);
+		    $eventapproved = "False";
+                    $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
+                    break;
+                 
                 case 'register':
                     // http://students.engr.scu.edu/~nsampema/api.php
                     
                     
-		    $eventname  =$_POST['eventname'];
+		    $eventid  =$_POST['eventid'];
 		    $attendeename  =$_POST['attendeename'];
 		    $attendeeemail  =$_POST['attendeeemail'];
-                    $response = perform_query("INSERT INTO attendees VALUES('$eventname','$attendeeemail',' $attendeename')");
+                    $response = database_query("INSERT INTO attendees VALUES('$eventid','$attendeeemail',' $attendeename')");
                     
                     break;
                 
                 case 'getevents':
-			$response = perform_query("SELECT * FROM events");
+			$response = perform_query("SELECT * FROM events where eventapproved = 'True'");
+			echo $response;
+			break;
+			
+		case 'getunapproved':
+			$response = perform_query("SELECT * FROM events where eventapproved = 'False'");
 			echo $response;
 			break;
 		
                 default:
                     $response = "{error: 'INVALID QUERY'}";
+                    echo $response;
                     break;
             }
         }
     }
 
+     function verify_user($user, $studentid) {
+	$retrieved_id = database_query("SELECT studentid from users where username ='$user'");
+	if (count(retrieved_id)!= 1){
+		return False;
+	}
+	echo $retrieved_id;
+	return ($studentid == $retrieved_id[0]['STUDENTID']);
     
     
+    }  
     function perform_query($sql_query) {
-        $database_connection=oci_connect('nsampema','OceanInAShell', '//dbserver.engr.scu.edu/db11g');
-        if(!$database_connection) {
+        //convert to text to send to frontend
+        return json_encode(database_query_query(response));
+    }
+    
+    function get_eventid($eventname) {
+	return hash('sha256', $eventname . strval(time()));
+    
+    }
+    
+    function database_query($sql_query) {
+        $conn=oci_connect('nsampema','OceanInAShell', '//dbserver.engr.scu.edu/db11g');
+        if(!$conn) {
             print "<br> connection failed:";
             exit;
         }
-        $query = oci_parse($database_connection, $sql_query);
+        
+        $query = oci_parse($conn, $sql_query);
         $response = [];
-	
-        if (oci_execute($query, OCI_COMMIT_ON_SUCCESS)) {
-	    
-            while($row = oci_fetch_array($query, OCI_ASSOC)) {
+	$kbool = oci_execute($query, OCI_COMMIT_ON_SUCCESS);
+	echo oci_num_rows($query);
+	echo $kbool;
+        if ($kbool) {
+            while($row = oci_fetch_array($query,OCI_ASSOC)) {
                 array_push($response, $row);
-                foreach($row as $result) {
-		}
-                
             }
-            
+
             oci_free_statement($query);
-            oci_commit($database_connection);
+            oci_commit($conn);
         } else {
-	    
             $response = ["Error" => oci_error(), "Query" => $sql_query];
         }
-        oci_close($database_connection);
-        return json_encode($response);
+        oci_close($conn);
+        return $response;
     }
-
 ?>

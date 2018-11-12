@@ -6,7 +6,7 @@ function createEvent(date,time,name,description,location,postedby,email) {
         'type' : 'POST',
         'data' : {
 			'query' : 'create',
-            'eventdate': date,
+			'eventdate': date,
 			'eventtime': time,
 			'eventname': name,
 			'eventdescription':description,
@@ -15,11 +15,11 @@ function createEvent(date,time,name,description,location,postedby,email) {
 			'eventemail': email
         },
         'success' : function(data) { 
-            console.log(data)
             var parsed = JSON.parse(data)
+	    return parsed
         },
         'error' : function(request,error) {
-            alert("Request: "+JSON.stringify(request));
+            ("Request: "+JSON.stringify(request));
         }
     });
 }
@@ -32,13 +32,14 @@ function registerEvent(eventID,name,email) {
 		'type' : 'POST',
 		'data' : {
 		'query' : 'register',
-		'eventID': eventID,
+		'eventid': eventID,
 		'attendeename':name,
 		'attendeeemail': email
 		},
 		'success' : function(data) { 
-		console.log(data)
+		
 		var parsed = JSON.parse(data)
+		return parsed
 		},
 		'error' : function(request,error) {
 		alert("Request: "+JSON.stringify(request));
@@ -46,24 +47,27 @@ function registerEvent(eventID,name,email) {
 	});
 }
 
-function viewEvents() {
+function viewEvents(filltable) {
 	console.log("attempting event registration");
+		parsed =[]
                 $.ajax({
                     cache: false,
                     'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
                     'type' : 'POST',
+		    'datatype' : "JSON",
                     'data' : {
 			'query' : 'getevents'
                     },
                     'success' : function(data) {
-                        console.log(data)
-                        var parsed = JSON.parse(data)
-                        alert(parsed)
+			var parsed = JSON.parse(data)
+			filltable(data)
                     },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
                     }
+                    
                 });
+		return parsed;
 }
 
 function viewUnapproved() {
@@ -75,10 +79,10 @@ function viewUnapproved() {
                     'data' : {
 			'query' : 'getunapproved'
                     },
-                    'success' : function(data) {
-                        console.log(data)
-                        var parsed = JSON.parse(data)
-                        alert(parsed)
+                    'success' :function(data) {
+			var parsed = JSON.parse(data)
+			filltable(data)
+                    },
                     },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
@@ -93,13 +97,14 @@ function updateStatus(eventID,updatedstatus,reason) {
 		'type' : 'POST',
 		'data' : {
 		'query' : 'updatestatus',
-		'eventID': eventID,
-		'updatedstatus': updatedstatus
+		'eventid': eventID,
+		'updatedstatus': updatedstatus,
 		'reason':reason
 		},
 		'success' : function(data) { 
 		console.log(data)
 		var parsed = JSON.parse(data)
+		return parsed
 		},
 		'error' : function(request,error) {
 		alert("Request: "+JSON.stringify(request));
