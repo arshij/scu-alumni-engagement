@@ -26,20 +26,26 @@ function createEvent(date,time,name,description,location,postedby,email) {
 
 function verifylogin(username,studentid,verify) {
 	console.log("attempting event registration");
-		parsed =[]
+		
                 $.ajax({
                     cache: false,
                     'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
                     'type' : 'POST',
-		    'datatype' : "JSON",
+		    		'datatype' : "JSON",
                     'data' : {
-			'query' : 'login',
-		        'username': username,
-			'studentid': studentid
+						'query' : 'login',
+		        		'username': username,
+						'studentid': studentid
                     },
                     'success' : function(data) {
-			var parsed = JSON.parse(data);
-			verify(parsed);
+						var parsed = JSON.parse(data)['authenticated'];
+						if (parsed == 'True'){
+							verify(True)
+						}
+						else{
+							verify(False)
+						}
+					
                     },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
@@ -95,19 +101,20 @@ function viewEvents(filltable) {
 
 
 
-function viewUnapproved() {
+function viewUnapproved(filltable) {
 	console.log("attempting event registration");
-                $.ajax({
-                    cache: false,
-                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
-                    'type' : 'POST',
-                    'data' : {
-			'query' : 'getunapproved'
-                    },
-                    'success' :function(data) {
+            $.ajax({
+            cache: false,
+            'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+            'type' : 'POST',
+            'data' : {
+				'query' : 'getunapproved'
+            },
+            'success' :function(data) {
+			alert(data);
 			var parsed = JSON.parse(data);
 			filltable(parsed);
-                    },
+            },
                     'error' : function(request,error) {
                         alert("Request: "+JSON.stringify(request));
                     }

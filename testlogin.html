@@ -1,0 +1,40 @@
+
+
+<html>
+    <head>
+        <title>
+            Test stuff
+        </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    </head>
+    <body onload="verifylogin('nsampemane','7');">
+        
+        <script>
+            function verifylogin(username,studentid) {
+	            console.log("attempting event registration");
+		        parsed =[]
+                $.ajax({
+                    cache: false,
+                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'type' : 'POST',
+		            'datatype' : "JSON",
+                    'data' : {
+			            'query' : 'login',
+		                'username': username,
+			            'studentid': studentid
+                    },
+                    'success' : function(data) {
+                    alert(JSON.parse(data)['authenticated']);
+                    },
+                    'error' : function(request,error) {
+                        alert("Request: "+JSON.stringify(request));
+                    }
+                    
+                });
+}
+            
+
+          
+        </script>
+    </body>
+</html> 

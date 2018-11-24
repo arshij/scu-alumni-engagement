@@ -8,88 +8,85 @@
 		case 'login':
 		   $username = $_POST['username'];
 		   $studentid = $_POST['studentid'];
-		   $response = "{authenticated: 'False'}";
+		   $response = '{"authenticated": "False"}';
 		   if(verify_user($username,$studentid)){
-			$response = "{authenticated: 'True'}";
+			$response = '{"authenticated": "True"}';
 		   
 		   }
 		   echo $response;
+        break;
             
-            
-                case 'create':
-                    // http://students.engr.scu.edu/~nsampema/api.php
+        case 'create':
+                   
                     
-                    $eventdate =  $_POST['eventdate'];
-		    $eventtime  =$_POST['eventtime'];
-		    $eventname  =$_POST['eventname'];
-		    $eventdescription  =$_POST['eventdescription'];
-		    $eventlocation  =$_POST['eventlocation'];
-		    $eventpostedby  =$_POST['eventpostedby'];
-		    $eventemail  =$_POST['eventemail'];
-		    $eventid = get_eventid($eventname);
-		    $eventapproved = "True";
-                    $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
-                    break;
-                
-                case 'createunapproved':
-			
-                    $eventdate =  $_POST['eventdate'];
-		    $eventtime  =$_POST['eventtime'];
-		    $eventname  =$_POST['eventname'];
-		    $eventdescription  =$_POST['eventdescription'];
-		    $eventlocation  =$_POST['eventlocation'];
-		    $eventpostedby  =$_POST['eventpostedby'];
-		    $eventemail  =$_POST['eventemail'];
-		    $eventid = get_eventid($eventname);
-		    $eventapproved = "False";
-                    $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
-                    break;
+        $eventdate =  $_POST['eventdate'];
+        $eventtime  =$_POST['eventtime'];
+        $eventname  =$_POST['eventname'];
+        $eventdescription  =$_POST['eventdescription'];
+        $eventlocation  =$_POST['eventlocation'];
+        $eventpostedby  =$_POST['eventpostedby'];
+        $eventemail  =$_POST['eventemail'];
+        $eventid = get_eventid($eventname);
+        $eventapproved = "True";
+        $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
+        break;
+            
+        case 'createunapproved':
+        
+        $eventdate =  $_POST['eventdate'];
+		$eventtime  =$_POST['eventtime'];
+		$eventname  =$_POST['eventname'];
+		$eventdescription  =$_POST['eventdescription'];
+		$eventlocation  =$_POST['eventlocation'];
+		$eventpostedby  =$_POST['eventpostedby'];
+		$eventemail  =$_POST['eventemail'];
+		$eventid = get_eventid($eventname);
+		$eventapproved = "False";
+        $response = database_query("INSERT INTO events VALUES('$eventid','$eventdate',' $eventtime','$eventname','$eventdescription',' $eventlocation',' $eventpostedby',' $eventemail','$eventapproved')");  
+        break;
                  
-                case 'register':
-                    // http://students.engr.scu.edu/~nsampema/api.php
+        case 'register':
+        $eventid  =$_POST['eventid'];
+		$attendeename  =$_POST['attendeename'];
+		$attendeeemail  =$_POST['attendeeemail'];
+        $response = database_query("INSERT INTO attendees VALUES('$eventid','$attendeeemail',' $attendeename')");
                     
+        break;
                     
-		    $eventid  =$_POST['eventid'];
-		    $attendeename  =$_POST['attendeename'];
-		    $attendeeemail  =$_POST['attendeeemail'];
-                    $response = database_query("INSERT INTO attendees VALUES('$eventid','$attendeeemail',' $attendeename')");
-                    
-                    break;
-                    
-                case 'updatestatus':
-			$eventid = $_POST['eventid'];
-			if ($_POST['status'] == "True"){
-				$response = database_query("Update events SET eventapproved = 'True' WHERE eventid = '$eventid'");
+        case 'updatestatus':
+		$eventid = $_POST['eventid'];
+		if ($_POST['status'] == "True"){
+			$response = database_query("Update events SET eventapproved = 'True' WHERE eventid = '$eventid'");
 			
-			}
-			else{
-				$response = database_query("DELETE FROM events WHERE eventid = '$eventid'");
-			}
-			break;
-                case 'getevents':
-			$response = perform_query("SELECT * FROM events where eventapproved = 'True'");
-			echo $response;
-			break;
+		}
+		else{
+			$response = database_query("DELETE FROM events WHERE eventid = '$eventid'");
+		}
+		break;
+                
+        case 'getevents':
+		$response = perform_query("SELECT * FROM events where eventapproved = 'True'");
+		echo $response;
+		break;
 			
 		case 'getunapproved':
-			$response = perform_query("SELECT * FROM events where eventapproved = 'False'");
-			echo $response;
-			break;
+		$response = perform_query("SELECT * FROM events where eventapproved = 'False'");
+		echo $response;
+		break;
 		
-                default:
-                    $response = "{error: 'INVALID QUERY'}";
-                    echo $response;
-                    break;
+        default:
+        $response = "{error: 'INVALID QUERY'}";
+        echo $response;
+        break;
             }
         }
     }
 
-     function verify_user($user, $studentid) {
+    function verify_user($user, $studentid) {
 	$retrieved_id = database_query("SELECT studentid from users where username ='$user'");
-	if (count(retrieved_id)!= 1){
+	if (count($retrieved_id)!= 1){
 		return False;
 	}
-	echo $retrieved_id;
 	return ($studentid == $retrieved_id[0]['STUDENTID']);
     
     
