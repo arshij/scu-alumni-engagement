@@ -38,5 +38,5 @@ function filltable(jsondata){
 
 function deleteEvent(eventid) {
     updateStatus(eventid, 'False');
-    location.reload();
+    window.location.reload(true);
 }

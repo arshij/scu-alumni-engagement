@@ -23,7 +23,7 @@ function filltable(jsondata){
     var title = document.getElementById('regTitle');
     for (var i = 0; i < myEvents.length; i++) {
         var tr = '<tr>';
-        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' onclick="approve(' + "'" + myEvents[i].EVENTDATE + "'" + "," + "'" + myEvents[i].EVENTTIME + "'" + "," + "'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTDESCRIPTION + "'" + "," + "'" + myEvents[i].EVENTLOCATION + "'" + "," + "'" + myEvents[i].EVENTPOSTEDBY + "'" + "," + "'" + myEvents[i].EVENTEMAIL + "'" + ')">Approve</button>' + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:36%;" id=' + i + '; onclick="reject(' + "'" + myEvents[i].EVENTID + "'" + ')">Reject</button>' + "</td>" + "</tr>" + "</tr>";
+        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' onclick="approve(' + "'" + myEvents[i].EVENTID + "'" + ')">Approve</button>' + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:36%;" id=' + i + '; onclick="reject(' + "'" + myEvents[i].EVENTID + "'" + ')">Reject</button>' + "</td>" + "</tr>" + "</tr>";
         tbody.innerHTML += tr;
     }
 }
@@ -31,14 +31,15 @@ function filltable(jsondata){
 /*
  * Function:        approve
  * 
- * Parameters:      eventname
+ * Parameters:      eventid
  * 
  * Description:	    Approves an alumni-created event. Adds entry to the events table.
  */
 
-function approve(date,time,name,description,location,postedby,email) {
+function approve(eventid) {
     updateStatus(eventid, 'True');
-    location.reload();
+    window.location.reload(true);
+
 }
 
 /*
@@ -52,5 +53,5 @@ function approve(date,time,name,description,location,postedby,email) {
 function reject(eventid) {
     alert(eventid + " has been denied.");
     updateStatus(eventid, 'False');
-    location.reload();
+    window.location.reload(true);
 }
