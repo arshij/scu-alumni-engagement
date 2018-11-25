@@ -99,8 +99,6 @@ function viewEvents(filltable) {
                 });
 }
 
-
-
 function viewUnapproved(filltable) {
 	console.log("attempting event registration");
             $.ajax({

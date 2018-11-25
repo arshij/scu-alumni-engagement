@@ -1,3 +1,22 @@
+/*
+ * File:        admindash.js
+ *
+ * Description:	Provides functionality for admindash.html. 
+*/
+
+$(document).ready(function(){
+    viewApproved(filltable);
+});
+
+/*
+ * Function:	filltable
+ * 
+ * Parameters:  jsondata
+ * 
+ * Description:	Called within viewApproved(). It recieves the events data from the SQL
+                database as parsed JSON and generates an HTML table row with each entry.
+ */
+
 function filltable(jsondata){
     var myEvents = jsondata;
     var tbody = document.getElementById('tbody');
@@ -9,10 +28,17 @@ function filltable(jsondata){
     }
 }
 
+/*
+ * Function:	delete
+ * 
+ * Parameters:  index
+ * 
+ * Description:	Deletes an entry from the events table.
+ */
+
 function deleteevent(index) {
     alert("Event " + index + " has been deleted");
+    
+    // Need to call something here to delete from events table
+    
 }
-
-$(document).ready(function(){
-    viewUnapproved(filltable);
-});
