@@ -37,8 +37,8 @@ function filltable(jsondata){
  */
 
 function approve(date,time,name,description,location,postedby,email) {
-    alert(name + " has been approved.");
-    createEvent(date,time,name,description,location,postedby,email);
+    updateStatus(eventid, 'True');
+    location.reload();
 }
 
 /*
@@ -52,4 +52,5 @@ function approve(date,time,name,description,location,postedby,email) {
 function reject(eventid) {
     alert(eventid + " has been denied.");
     updateStatus(eventid, 'False');
+    location.reload();
 }

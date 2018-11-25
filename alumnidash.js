@@ -63,11 +63,11 @@ function getEventName(name, id) {
 
 function fillattendees(jsondata) {
     var eventattendees = jsondata;
-    
+    console.log("Attendees: " + jsondata);
     // Generate HTML list from event attendee array.
-    for (var j = 0; j < eventattendees.length; j++) {
+    for (var i = 0; i < eventattendees.length; i++) {
         var li = '<li class="list-group-item">';
-        li += eventattendees[j].ATTENDEEFIRSTNAME + " " + eventattendees[j].ATTENDEELASTNAME + ", Class of " + eventattendees[j].ATTENDEEGRADYEAR + '</li>';
+        li += eventattendees[i].ATTENDEEFIRSTNAME + " " + eventattendees[i].ATTENDEELASTNAME + ", Class of " + eventattendees[i].ATTENDEEGRADYEAR + '</li>';
         attendeelist.innerHTML += li;
     }
 }

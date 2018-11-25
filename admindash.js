@@ -37,6 +37,6 @@ function filltable(jsondata){
  */
 
 function deleteEvent(eventid) {
-    alert("Event " + eventid + " has been deleted");
     updateStatus(eventid, 'False');
+    location.reload();
 }
