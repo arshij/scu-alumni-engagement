@@ -21,5 +21,5 @@ function submitForApproval() {
     var location = $( "#location" ).val();
     var postedby = $( "#postedby" ).val();
     var email = $( "#email" ).val();
-    createApproved(date,time,name,description,location,postedby,email);
+    createUnapproved(date,time,name,description,location,postedby,email);
 }
