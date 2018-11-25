@@ -45,14 +45,14 @@ $(document).ready(function(){
 
 function filltable(jsondata){
     var myEvents = jsondata;
-    console.log("Events: " + myEvents);
+    
     var tbody = document.getElementById('tbody');
     var title = document.getElementById('regTitle');
     var attendeelist = document.getElementById('attendeelist');
-
+    
     for (var i = 0; i < myEvents.length; i++) {
         var tr = '<tr>';
-        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="getEventName(' + i + ",'" + myEvents[i].EVENTNAME + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
+        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="getEventName(' + i + ",'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTID + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
 }
@@ -60,7 +60,7 @@ function filltable(jsondata){
 /*
  * Function:	getEventName
  * 
- * Parameters:  index, name
+ * Parameters:  index, name, id
  * 
  * Description:	Called onclick of "Register" button in HTML table. Gets event name to
                 be used in other functions. Calls attendeeList() to display updated
@@ -68,11 +68,12 @@ function filltable(jsondata){
  * 
  */
 
-function getEventName(index, name) {
+function getEventName(index, name, id) {
     attendeelist.innerHTML = '';
     var eventname = name;
+    var eventid = id;
     window.sessionStorage.setItem('eventname', eventname);
-    window.sessionStorage.setItem('attendeeevent', eventname);
+    window.sessionStorage.setItem('eventid', eventid);
     attendeeList(name);
 }
 
@@ -115,12 +116,13 @@ function attendeeList(eventname) {
 
 function submit() {
     var eventname = window.sessionStorage.getItem('eventname');
+    var eventid = window.sessionStorage.getItem('eventid');
     var firstname = $( "#firstname" ).val();
     var lastname = $( "#lastname" ).val();
     var registeremail = $( "#registeremail" ).val();
     var gradyear = $( "#gradyear" ).val();
     var guests = $( "#guests" ).val();
-    // registerEvent(eventname,firstname,lastname,registeremail,guests);
+    // registerEvent(eventid,firstname,lastname,registeremail,guests);
     
     // Clear input text fields after user submits.
     var firstname = $( "#firstname" ).val('');
