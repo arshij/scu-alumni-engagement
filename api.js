@@ -24,6 +24,33 @@ function createEvent(date,time,name,description,location,postedby,email) {
     });
 }
 
+function createUnapproved(date,time,name,description,location,postedby,email) {
+    console.log("attempting unapproved event creation");
+    $.ajax({
+        cache: false,
+        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+        'type' : 'POST',
+        'data' : {
+			'query' : 'createunapproved',
+			'eventdate': date,
+			'eventtime': time,
+			'eventname': name,
+			'eventdescription':description,
+			'eventlocation': location,
+			'eventpostedby': postedby,
+			'eventemail': email
+        },
+        'success' : function(data) { 
+            var parsed = JSON.parse(data)
+	    return parsed
+        },
+        'error' : function(request,error) {
+            ("Request: "+JSON.stringify(request));
+        }
+    });
+}
+
+
 function verifylogin(username,studentid,verify) {
 	console.log("attempting login");
 		
