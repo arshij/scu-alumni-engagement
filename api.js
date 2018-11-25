@@ -89,6 +89,7 @@ function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
 		'type' : 'POST',
 		'data' : {
 		'query' : 'register',
+		'eventid' : eventID,
 		'attendeefirstname': firstname,
         'attendeelastname': lastname,
         'attendeegradyear': gradyear,
@@ -196,7 +197,7 @@ function viewAttendees(eventid,filltable) {
                 });
 }
 
-function updateStatus(eventID,updatedstatus,reason) {
+function updateStatus(eventID,updatedstatus) {
 	$.ajax({
 		cache: false,
 		'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
@@ -204,11 +205,9 @@ function updateStatus(eventID,updatedstatus,reason) {
 		'data' : {
 		'query' : 'updatestatus',
 		'eventid': eventID,
-		'updatedstatus': updatedstatus,
-		'reason':reason
+		'updatedstatus': updatedstatus
 		},
 		'success' : function(data) { 
-		console.log(data)
 		var parsed = JSON.parse(data)
 		return parsed
 		},
