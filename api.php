@@ -58,12 +58,12 @@
                     
         case 'updatestatus':
         $eventid = $_POST['eventid'];
-		if ($_POST['status'] == "True"){
+		if ($_POST['updatedstatus'] == "True"){
 			$response = database_query("Update events SET eventapproved = 'True' WHERE eventid = '$eventid'");
 			
         
         }
-		else if ($_POST['status'] == "False"){
+		else if ($_POST['updatedstatus'] == "False"){
 			$response = database_query("DELETE FROM events WHERE eventid = '$eventid'");
         }
         echo $response;

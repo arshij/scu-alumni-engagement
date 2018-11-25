@@ -88,7 +88,7 @@ function submit() {
     var registeremail = $( "#registeremail" ).val();
     var gradyear = $( "#gradyear" ).val();
     var guests = $( "#guests" ).val();
-    registerEvent(eventid,firstname,lastname,registeremail,gradyear,guests);
+    registerEvent(eventid,firstname,lastname,gradyear,registeremail,guests);
 
     // Clear input text fields after user submits.
     var firstname = $( "#firstname" ).val('');

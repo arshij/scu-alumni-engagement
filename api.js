@@ -183,7 +183,7 @@ function viewAttendees(eventid,filltable) {
                     'type' : 'POST',
 		    'datatype' : "JSON",
                     'data' : {
-			'query' : 'getevents',
+			'query' : 'getattendees',
 			'eventid' :eventid
                     },
                     'success' : function(data) {
