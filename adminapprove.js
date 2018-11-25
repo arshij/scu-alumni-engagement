@@ -6,13 +6,6 @@
 
 $(document).ready(function(){
     viewUnapproved(filltable);
-    var tbody = document.getElementById('tbody');
-    var title = document.getElementById('regTitle');
-    for (var i = 0; i < myEvents.length; i++) {
-        var tr = '<tr>';
-        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' onclick="approve(' + "'" + myEvents[i].EVENTDATE + "'" + "," + "'" + myEvents[i].EVENTTIME + "'" + "," + "'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTDESCRIPTION + "'" + "," + "'" + myEvents[i].EVENTLOCATION + "'" + "," + "'" + myEvents[i].EVENTPOSTEDBY + "'" + "," + "'" + myEvents[i].EVENTEMAIL + "'" + ')">Approve</button>' + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:36%;" id=' + i + '; onclick="reject(' + "'" + myEvents[i].EVENTNAME + "'" + ')">Reject</button>' + "</td>" + "</tr>" + "</tr>";
-        tbody.innerHTML += tr;
-    }
 });
 
 /*
