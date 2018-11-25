@@ -47,28 +47,45 @@
                  
         case 'register':
         $eventid  =$_POST['eventid'];
-		$attendeename  =$_POST['attendeename'];
-		$attendeeemail  =$_POST['attendeeemail'];
-        $response = database_query("INSERT INTO attendees VALUES('$eventid','$attendeeemail',' $attendeename')");
+        $attendeefirstname  =$_POST['attendeefirstname'];
+        $attendeelastname  =$_POST['attendeelastname'];
+        $attendeegradyear  =$_POST['attendeegradyear'];
+        $attendeeemail  =$_POST['attendeeemail'];
+        $guestcount  =$_POST['guestcount'];
+        $response = database_query("INSERT INTO attendees VALUES('$eventid', '$attendeefirstname','$attendeelastname',' $attendeegradyear',' $attendeeemail',' $guestcount')");
                     
         break;
                     
         case 'updatestatus':
-		$eventid = $_POST['eventid'];
+        $eventid = $_POST['eventid'];
 		if ($_POST['status'] == "True"){
 			$response = database_query("Update events SET eventapproved = 'True' WHERE eventid = '$eventid'");
 			
-		}
-		else{
+        
+        }
+		else if ($_POST['status'] == "False"){
 			$response = database_query("DELETE FROM events WHERE eventid = '$eventid'");
-		}
+        }
+        echo $response;
 		break;
                 
         case 'getevents':
+		$response = perform_query("SELECT * FROM events");
+		echo $response;
+		break;
+        
+        case 'getattendees':
+        $eventid  =$_POST['eventid'];
+		$response = perform_query("SELECT * FROM attendees where eventid = '$eventid'");
+		echo $response;
+		break;
+
+        case 'getapproved':
 		$response = perform_query("SELECT * FROM events where eventapproved = 'True'");
 		echo $response;
 		break;
-			
+		
+
 		case 'getunapproved':
 		$response = perform_query("SELECT * FROM events where eventapproved = 'False'");
 		echo $response;

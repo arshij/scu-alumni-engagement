@@ -13,8 +13,11 @@ CREATE TABLE events(
 
 CREATE TABLE attendees(
 	eventid varchar(255),
-	attendeename varchar(255),
-	attendeeemail varchar(255)
+	attendeefirstname varchar(255),
+	attendeelastname varchar(255),
+	attendeegradyear varchar(255),
+	attendeeemail  varchar(255),
+	guestcount varchar(255)
 );
 
 
