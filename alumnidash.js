@@ -1,3 +1,10 @@
+/*
+ * File:        alumnidash.js
+ *
+ * Description:	Provides functionality for alumnidash.html. 
+*/
+
+/* SAMPLE ATTENDEE DATA
 var attendees = [
 {
     "EVENTNAME": "First Friday Mass and Lunch",
@@ -21,77 +28,77 @@ var attendees = [
     "EMAIL" : "jdoe1@scu.edu",
 },
 ];
-
-var myEvents = [
-{
-    "EVENTNAME": "First Friday Mass and Lunch",
-    "EVENTDATE" : "Arshi",
-    "EVENTTIME" : "Jujara",
-    "EVENTDESCRIPTION" : "2019",
-    "EVENTLOCATION" : "ajujara@scu.edu",
-    "EVENTPOSTEDBY" : "Me"
-}
-];
+*/
 
 $(document).ready(function(){
-    viewEvents(filltable);
+    viewApproved(filltable);
 });
 
-function viewEvents(filltable) {
-	console.log("Alumni dashboard: view events");
-    parsed =[]
-    $.ajax({
-        cache: false,
-        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
-        'type' : 'POST',
-        'datatype' : "JSON",
-        'data' : {
-            'query' : 'getevents'
-        },
-        'success' : function(data) {
-            var parsed = JSON.parse(data)
-            filltable(data)
-        },
-        'error' : function(request,error) {
-            alert("Request: "+JSON.stringify(request));
-        }        
-    });
-    return parsed;
-}
+/*
+ * Function:	filltable
+ * 
+ * Parameters:  jsondata
+ * 
+ * Description:	Called within viewUnapproved(). It recieves the events data from the SQL
+                database as parsed JSON and generates an HTML table row with each entry.
+ */
 
 function filltable(jsondata){
     var myEvents = jsondata;
-    console.log("Events: " + myEvents);
+    
     var tbody = document.getElementById('tbody');
     var title = document.getElementById('regTitle');
     var attendeelist = document.getElementById('attendeelist');
-
+    
     for (var i = 0; i < myEvents.length; i++) {
         var tr = '<tr>';
-        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="register(' + i + ",'" + myEvents[i].EVENTNAME + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
+        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="getEventName(' + i + ",'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTID + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
 }
 
+/*
+ * Function:	getEventName
+ * 
+ * Parameters:  index, name, id
+ * 
+ * Description:	Called onclick of "Register" button in HTML table. Gets event name to
+                be used in other functions. Calls attendeeList() to display updated
+                attendee list.
+ * 
+ */
 
-function register(index, name) {
+function getEventName(index, name, id) {
     attendeelist.innerHTML = '';
     var eventname = name;
-    console.log("In register: " + eventname);
+    var eventid = id;
     window.sessionStorage.setItem('eventname', eventname);
-    window.sessionStorage.setItem('attendeeevent', eventname);
-    attendeeList();
+    window.sessionStorage.setItem('eventid', eventid);
+    attendeeList(name);
 }
 
-function attendeeList() {
+/*
+ * Function:	attendeeList
+ * 
+ * Parameters:  eventname
+ * 
+ * Description:	Searches attendees of all registrations to find all matches for the given
+                event. Displays name and grad year to "See who else is attending" list in
+                modal.
+ * 
+ */
+
+function attendeeList(eventname) {
     var eventattendees = [];
-    var attendeeEvent = window.sessionStorage.getItem('attendeeevent');
+    
+    // Get all attendees for the given eventname and store in attendee array.
     for (var i = 0; i < attendees.length; i++) {
-        if (attendeeEvent == attendees[i].EVENTNAME) {
+        if (eventname == attendees[i].EVENTNAME) {
             eventattendees.push(attendees[i]);
         }
     }
-    console.log(eventattendees);
+    
+    // Generate HTML list from event attendee array.
     for (var j = 0; j < eventattendees.length; j++) {
         var li = '<li class="list-group-item">';
         li += eventattendees[j].FIRSTNAME + " " + eventattendees[j].LASTNAME + ", Class of " + eventattendees[j].GRADYEAR + '</li>';
@@ -99,18 +106,28 @@ function attendeeList() {
     }
 }
     
-$("#registerbutton").click(function() {
-        var eventname = window.sessionStorage.getItem('eventname');
-        var firstname = $( "#firstname" ).val();
-        var lastname = $( "#lastname" ).val();
-        var registeremail = $( "#registeremail" ).val();
-        var gradyear = $( "#gradyear" ).val();
-        var guests = $( "#guests" ).val();
-        console.log(firstname + lastname + registeremail + gradyear + guests + eventname);
-        // Clear input text fields
-        var firstname = $( "#firstname" ).val('');
-        var lastname = $( "#lastname" ).val('');
-        var registeremail = $( "#registeremail" ).val('');
-        var gradyear = $( "#gradyear" ).val('');
-        var guests = $( "#guests" ).val('');
-});
+/*
+ * Function:	submit
+ * 
+ * Parameters:  None
+ * 
+ * Description:	Send user registration details to the attendee database in back-end.
+ */
+
+function submit() {
+    var eventname = window.sessionStorage.getItem('eventname');
+    var eventid = window.sessionStorage.getItem('eventid');
+    var firstname = $( "#firstname" ).val();
+    var lastname = $( "#lastname" ).val();
+    var registeremail = $( "#registeremail" ).val();
+    var gradyear = $( "#gradyear" ).val();
+    var guests = $( "#guests" ).val();
+    // registerEvent(eventid,firstname,lastname,registeremail,guests);
+    
+    // Clear input text fields after user submits.
+    var firstname = $( "#firstname" ).val('');
+    var lastname = $( "#lastname" ).val('');
+    var registeremail = $( "#registeremail" ).val('');
+    var gradyear = $( "#gradyear" ).val('');
+    var guests = $( "#guests" ).val('');
+};
