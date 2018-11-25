@@ -1,16 +1,16 @@
 /*
- * File:        admincreate.js
+ * File:            admincreate.js
  *
- * Description:	Provides functionality for admincreate.html. 
+ * Description:	    Provides functionality for admincreate.html. 
 */
 
 /*
- * Function:	addEvent
+ * Function:        addEvent
  * 
- * Parameters:  None
+ * Parameters:      None
  * 
- * Description:	Allows an admin user to create events. Sends details to createEvent()
-                which directly adds the entry to the events table.
+ * Description:	    Allows an admin user to create events. Sends details to createEvent()
+                    which directly adds the entry to the events table.
  */
 
 function addEvent() {

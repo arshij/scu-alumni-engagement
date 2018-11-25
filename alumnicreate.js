@@ -1,16 +1,16 @@
 /*
- * File:        alumnicreate.js
+ * File:            alumnicreate.js
  *
- * Description:	Provides functionality for alumnicreate.html. 
+ * Description:	    Provides functionality for alumnicreate.html. 
 */
 
 /*
- * Function:	submitForApproval
+ * Function:        submitForApproval
  * 
- * Parameters:  None
+ * Parameters:      None
  * 
- * Description:	Allows an alumni user to create events. Sends details to createApproved()
-                which adds to an approval table for an admin to approve or reject.
+ * Description:	    Allows an alumni user to create events. Sends details to createApproved()
+                    which adds to an approval table for an admin to approve or reject.
  */
 
 function submitForApproval() {
