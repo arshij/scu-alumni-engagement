@@ -16,7 +16,7 @@
 function addEvent() {
     var date = $( "#date" ).val();
     var time = $( "#time" ).val();
-    var title = $( "#title" ).val();
+    var name = $( "#title" ).val();
     var description = $( "#description" ).val();
     var location = $( "#location" ).val();
     var postedby = "SCU Alumni Office";
