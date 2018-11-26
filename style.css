@@ -13,17 +13,19 @@
     padding-right: 15%;
 }
 
-.btn-info
-{
+.btn-info {
   background-color: #99303E;
   border-color: #99303E;
 }
 
-.btn-info:hover
-{
+.btn-info:hover:enabled {
   background-color: white;
   border-color: #99303E;
   color:#99303E
+}
+
+.btn-info:disabled {
+    background-color: grey;
 }
 
 .footer {
