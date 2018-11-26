@@ -1,16 +1,4 @@
-var user = $("#username");
 var pass = $("#password");
-
-// Hardcoded user data
-var users = [
-{
-    "FIRSTNAME" : "Arshi",
-    "LASTNAME" : "Jujara",
-    "GRADYEAR" : "2019",
-    "EMAIL" : "ajujara@scu.edu",
-    "IDNUMBER" : "000000"
-},
-];
 
 // Show password Button
 $("#showpassword").on('click', function(){
@@ -24,6 +12,7 @@ $("#showpassword").on('click', function(){
     }	
 });
 
+/* Stuff I was testing with, can change/delete
 $("#login").on('click', function(){
     console.log( "User = " + $("#username").val() );
     console.log( "Pass = " + $("#password").val() );
@@ -49,3 +38,4 @@ $("#logout").on('click', function(){
     var myCookie = document.cookie;
     console.log("Cookies: " + myCookie);
 });
+*/

@@ -36,3 +36,7 @@
     font-size: 10px;
     text-align: center;
 }
+
+.table tbody > tr > td.vert-aligned {
+    vertical-align: middle;
+}

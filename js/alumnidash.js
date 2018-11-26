@@ -20,12 +20,20 @@ $(document).ready(function(){
 function filltable(jsondata){
     var myEvents = jsondata;
     
+    // Sort events by ascending date
+    myEvents.sort(function(a, b) {
+        var dateA = new Date(a.EVENTDATE), dateB = new Date(b.EVENTDATE);
+        return dateA - dateB;
+    });
+    
     var tbody = document.getElementById('tbody');
     var title = document.getElementById('regTitle');
     var attendeelist = document.getElementById('attendeelist');
     
     for (var i = 0; i < myEvents.length; i++) {
         var tr = '<tr>';
+        
+        // This code block adds an HTML row for an entry
         tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="getEventName(' + "'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTID + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
@@ -44,9 +52,7 @@ function filltable(jsondata){
 
 function getEventName(name, id) {
     attendeelist.innerHTML = '';
-    var eventname = name;
     var eventid = id;
-    window.sessionStorage.setItem('eventname', eventname);
     window.sessionStorage.setItem('eventid', eventid);
     viewAttendees(id, fillattendees);
 }
@@ -63,6 +69,7 @@ function getEventName(name, id) {
 
 function fillattendees(jsondata) {
     var eventattendees = jsondata;
+    
     // Generate HTML list from event attendee array.
     for (var i = 0; i < eventattendees.length; i++) {
         console.log("Attendee: " + eventattendees[i].ATTENDEEFIRSTNAME + " " + eventattendees[i].ATTENDEELASTNAME);
@@ -81,7 +88,6 @@ function fillattendees(jsondata) {
  */
 
 function submit() {
-    var eventname = window.sessionStorage.getItem('eventname');
     var eventid = window.sessionStorage.getItem('eventid');
     var firstname = $( "#firstname" ).val();
     var lastname = $( "#lastname" ).val();

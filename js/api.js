@@ -19,7 +19,7 @@ function createEvent(date,time,name,description,location,postedby,email) {
 	    return parsed
         },
         'error' : function(request,error) {
-            ("Request: "+JSON.stringify(request));
+            console.log("Request: "+JSON.stringify(request));
         }
     });
 }
@@ -45,11 +45,10 @@ function createUnapproved(date,time,name,description,location,postedby,email) {
 	    return parsed
         },
         'error' : function(request,error) {
-            ("Request: "+JSON.stringify(request));
+            console.log("Request: "+JSON.stringify(request));
         }
     });
 }
-
 
 function verifylogin(username,studentid,verify) {
 	console.log("attempting login");
@@ -75,7 +74,7 @@ function verifylogin(username,studentid,verify) {
 					
                     },
                     'error' : function(request,error) {
-                        alert("Request: "+JSON.stringify(request));
+                        console.log("Request: "+JSON.stringify(request));
                     }
                     
                 });
@@ -102,7 +101,7 @@ function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
 		return parsed;
 		},
 		'error' : function(request,error) {
-		alert("Request: "+JSON.stringify(request));
+		  console.log("Request: "+JSON.stringify(request));
 		}
 	});
 }
@@ -123,12 +122,11 @@ function viewEvents(filltable) {
 			filltable(parsed);
                     },
                     'error' : function(request,error) {
-                        alert("Request: "+JSON.stringify(request));
+                        console.log("Request: "+JSON.stringify(request));
                     }
                     
                 });
 }
-
 
 function viewApproved(filltable) {
 	console.log("attempting collection of approved events");
@@ -146,13 +144,11 @@ function viewApproved(filltable) {
 			filltable(parsed);
                     },
                     'error' : function(request,error) {
-                        alert("Request: "+JSON.stringify(request));
+                        console.log("Request: "+JSON.stringify(request));
                     }
                     
                 });
 }
-
-
 
 function viewUnapproved(filltable) {
 	console.log("attempting collection of unapproved events");
@@ -164,12 +160,11 @@ function viewUnapproved(filltable) {
 				'query' : 'getunapproved'
             },
             'success' :function(data) {
-			alert(data);
 			var parsed = JSON.parse(data);
 			filltable(parsed);
             },
                     'error' : function(request,error) {
-                        alert("Request: "+JSON.stringify(request));
+                        console.log("Request: "+JSON.stringify(request));
                     }
                 });
 }
@@ -191,7 +186,7 @@ function viewAttendees(eventid,filltable) {
 			filltable(parsed);
                     },
                     'error' : function(request,error) {
-                        alert("Request: "+JSON.stringify(request));
+                        console.log("Request: "+JSON.stringify(request));
                     }
                     
                 });
@@ -212,7 +207,7 @@ function updateStatus(eventID,updatedstatus) {
 		return parsed
 		},
 		'error' : function(request,error) {
-		alert("Request: "+JSON.stringify(request));
+		console.log("Request: "+JSON.stringify(request));
 		}
 	});
 }

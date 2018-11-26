@@ -9,7 +9,7 @@
  * 
  * Parameters:      None
  * 
- * Description:	    Allows an alumni user to create events. Sends details to createApproved()
+ * Description:	    Allows an alumni user to create events. Sends details to createUnapproved()
                     which adds to an approval table for an admin to approve or reject.
  */
 
