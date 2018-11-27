@@ -1,5 +1,6 @@
 
 <?php
+//This file contains the admin event creation page
 include 'session.php';
 include 'admincheck.php';
 

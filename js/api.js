@@ -89,6 +89,7 @@ function verifylogin(username,studentid,verify) {
 						'studentid': studentid
                     },
                     'success' : function(data) {
+			console.log(data);
                         var parsed = JSON.parse(data)['authenticated'];
                        
 						if (parsed == 'True'){

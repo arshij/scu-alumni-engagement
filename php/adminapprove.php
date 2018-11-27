@@ -1,4 +1,7 @@
+
+
 <?php
+//This file contains the admin approve page
 include 'session.php';
 include 'admincheck.php';
 

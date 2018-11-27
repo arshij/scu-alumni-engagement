@@ -1,4 +1,5 @@
 <?php
+//This file contains the admin dashboard
 include 'session.php';
 include 'admincheck.php';
 

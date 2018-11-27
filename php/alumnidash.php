@@ -1,4 +1,6 @@
 <?php
+
+//This file contains the dashboard for alumni
 include 'session.php';
 include 'alumnicheck.php';
 

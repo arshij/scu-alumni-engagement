@@ -1,4 +1,5 @@
 <?php
+//this file contains the session security check that is run on all pages other than the index
 session_start();
 
 if ( isset( $_SESSION['user_id'] ) ) {

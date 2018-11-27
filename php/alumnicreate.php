@@ -1,4 +1,7 @@
 <?php
+
+//This file contains the alumni event creation page
+
 include 'session.php';
 include 'alumnicheck.php';
 
@@ -63,7 +66,7 @@ include 'alumnicheck.php';
           <div class="form-group row">
             <label style="padding-left: 2cm" for="Time" class="col-sm-2 col-form-label">Time:</label>
             <div class="col-sm-7">
-              <input type="Time" class="for<a class="nav-link" id="logout" href="../index.html">Logout <strong>ADMIN</strong></a>m-control" id="time" placeholder="--:-- (am/pm) (timezone)" required="true">
+              <input type="Time" class="form-control" id="time" placeholder="--:-- (am/pm) (timezone)" required="true">
             </div>
           </div>
           <div class="form-group row">
