@@ -9,7 +9,7 @@ $("#showpassword").on('click', function(){
     } else {
 		pass.attr('type', 'password');
 		$(this).text("Show Password");
-    }	
+    }
 });
 
 function verify(verified, username){
@@ -21,11 +21,11 @@ function verify(verified, username){
     else {
         console.log("verified");
         if (username == 'admin') {
-            window.location.replace("http://students.engr.scu.edu/~nsampema/html/admindash.html");
+            window.location.replace("http://students.engr.scu.edu/~nsampema/html/admindash.php");
         }
         else {
-            window.location.replace("http://students.engr.scu.edu/~nsampema/html/alumnidash.html");
-        }     
+            window.location.replace("http://students.engr.scu.edu/~nsampema/html/alumnidash.php");
+        }
     }
 }
 
@@ -47,7 +47,7 @@ $("#login").on('click', function(){
     console.log( "Pass = " + $("#password").val() );
     var checkuser = $("#username").val();
     var checkpass = $("#password").val();
-    
+
     for (var i = 0; i < users.length; i++) {
         if (users[i].EMAIL == checkuser) {
             if (checkpass == users[i].IDNUMBER) {
@@ -57,7 +57,7 @@ $("#login").on('click', function(){
             alert("Incorrect username or password.");
         }
     }
-    document.cookie = "username=" + $("#username").val() + "expires=Thu, 1 Jan 2019 12:00:00 UTC; path=/"; 
+    document.cookie = "username=" + $("#username").val() + "expires=Thu, 1 Jan 2019 12:00:00 UTC; path=/";
     var myCookie = document.cookie;
     console.log("Cookies: " + myCookie);
 });

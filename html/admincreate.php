@@ -1,3 +1,10 @@
+
+<?php
+include '../session.php';
+echo "working";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +97,7 @@
           </div>
         </form>
     </div>
-      
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -99,7 +106,7 @@
             <p></p>
         </div>
     </footer>
-    
+
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
