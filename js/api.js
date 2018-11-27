@@ -106,6 +106,35 @@ function verifylogin(username,studentid,verify) {
                 });
 }
 
+function attemptlogout() {
+/*
+ * Parameters:      
+ * 
+ * Description:	   logs out user
+ */
+
+    console.log("attempting logout");
+                
+                $.ajax({
+                    cache: false,
+                    'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
+                    'type' : 'POST',
+		    		'datatype' : "JSON",
+                    'data' : {
+						'query' : 'logout',
+                    },
+                    'success' : function(data) {
+			window.location.replace("http://students.engr.scu.edu/~nsampema/index.html");
+					
+                    },
+                    'error' : function(request,error) {
+                        console.log("Request: "+JSON.stringify(request));
+                    }
+                    
+                });
+}
+
+
 function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
 	console.log("attempting event regisration");
 	$.ajax({

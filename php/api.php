@@ -21,7 +21,12 @@
 		   }
 		   echo $response;
         break;
-
+	
+	
+	case 'logout':
+         session_destroy();
+        break;
+	
         case 'getusers':
         $response = perform_query("SELECT * from users");
         break;

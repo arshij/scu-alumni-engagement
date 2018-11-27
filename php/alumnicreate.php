@@ -41,7 +41,7 @@ include 'session.php';
                 <span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="logout" href="../index.html">Logout</a>
+              <a class="nav-link" id="logout" onclick="attemptlogout()" href="#">Logout</a>
             </li>
                 </ul>
             </div>
@@ -62,7 +62,7 @@ include 'session.php';
           <div class="form-group row">
             <label style="padding-left: 2cm" for="Time" class="col-sm-2 col-form-label">Time:</label>
             <div class="col-sm-7">
-              <input type="Time" class="form-control" id="time" placeholder="--:-- (am/pm) (timezone)" required="true">
+              <input type="Time" class="for<a class="nav-link" id="logout" href="../index.html">Logout <strong>ADMIN</strong></a>m-control" id="time" placeholder="--:-- (am/pm) (timezone)" required="true">
             </div>
           </div>
           <div class="form-group row">
