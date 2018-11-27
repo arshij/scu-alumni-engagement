@@ -6,6 +6,7 @@
 
 $(document).ready(function(){
     viewApproved(filltable);
+    requiredFields();
 });
 
 /*
@@ -79,6 +80,30 @@ function fillattendees(jsondata) {
     }
 }
     
+/*
+ * Function:        requiredFields
+ * 
+ * Parameters:      None
+ * 
+ * Description:	    Ensuring all fields are filled out before submitting.
+ */
+
+function requiredFields() {
+    $( "#submitbutton" ).attr('disabled','disabled');
+    $("form input").keyup(function(){
+        var empty = false;
+            $('form input').each(function() {
+                if ($(this).val() == '') {
+                    empty = true;
+                }
+            });
+
+            if (!empty) {
+                $('#submitbutton').removeAttr('disabled');
+            }
+    });
+}
+
 /*
  * Function:        submit
  * 
