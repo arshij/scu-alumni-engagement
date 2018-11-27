@@ -34,7 +34,7 @@ function filltable(jsondata){
         var tr = '<tr>';
         
         // This code block adds an HTML row for an entry
-        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td>" + '<button type="button" class="btn btn-info btn-sm" style="margin-top:30%;" id=' + i + ' data-target="#regmodal"; onclick="getEventName(' + "'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTID + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
+        tr += "<td>" + myEvents[i].EVENTDATE + "</td>" + "<td>" + myEvents[i].EVENTTIME + "</td>" + "<td class='eventname' value=" + "'" + myEvents[i].EVENTNAME + "'>" + myEvents[i].EVENTNAME + "</td>" + "<td>" + myEvents[i].EVENTDESCRIPTION + "</td>" + "<td>" + myEvents[i].EVENTLOCATION + "</td>" + "<td>" + myEvents[i].EVENTPOSTEDBY + "</td>" + "<td class='vert-aligned'>" + '<button type="button" class="btn btn-info btn-sm" data-target="#regmodal"; onclick="getEventName(' + "'" + myEvents[i].EVENTNAME + "'" + "," + "'" + myEvents[i].EVENTID + "'" + ')" data-toggle="modal";>Register</button>' + "</td>" + "</tr>";
         tbody.innerHTML += tr;
     }
 }

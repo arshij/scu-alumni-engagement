@@ -65,13 +65,15 @@ function xverifylogin(username,studentid) {
                         
                     });
     }
-$("#login").on('click', function(){
-    console.log( "User = " + $("#username").val() );
-    console.log( "Pass = " + $("#password").val() );
-    var checkuser = $("#username").val();
-    var checkpass = String($("#password").val());
-    xverifylogin("nsampemane","7");
-    
+
+$(document).ready(function() {
+    $("#login").click(function() {
+        console.log( "User = " + $("#username").val() );
+        console.log( "Pass = " + $("#password").val() );
+        var checkuser = $("#username").val();
+        var checkpass = String($("#password").val());
+        xverifylogin("nsampemane","7");
+    });
 });
 
 /* Stuff I was testing with, can change/delete
