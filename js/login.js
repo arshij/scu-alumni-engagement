@@ -37,7 +37,7 @@ $(document).ready(function() {
         console.log( "Pass = " + $("#password").val() );
         var checkuser = $("#username").val();
         var checkpass = String($("#password").val());
-        verifylogin(checkuser,checkpass);
+        verifylogin(checkuser,checkpass,verify);
     });
 });
 
