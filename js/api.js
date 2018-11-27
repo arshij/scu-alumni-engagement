@@ -71,7 +71,13 @@ function verifylogin(username,studentid,verify) {
  * Description:	   Allows the verification of a user
  */
 
-	console.log("attempting login");
+    console.log("attempting login");
+                console.log(username );
+                console.log(studentid);
+                console.log(typeof username);
+                console.log(typeof studentid );
+
+                
                 $.ajax({
                     cache: false,
                     'url' : 'http://students.engr.scu.edu/~nsampema/api.php',

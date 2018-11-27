@@ -28,13 +28,49 @@ function verify(verified, username){
         }     
     }
 }
-
+function xverifylogin(username,studentid) {
+    /*
+     * Parameters:      username,studentid,verify
+     * 
+     * Description:	   Allows the verification of a user
+     */
+    
+        console.log("attempting login");
+        console.log( username );
+        console.log( studentid );
+                    $.ajax({
+                        cache: false,
+                        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                        'type' : 'POST',
+                        'datatype' : "JSON",
+                        'data' : {
+                            'query' : 'login',
+                            'username': username,
+                            'studentid': studentid
+                        },
+                        'success' : function(data) {
+                            var parsed = JSON.parse(data)['authenticated'];
+                            console.log("calling verify")
+                            if (parsed == 'True'){
+                                console.log("True")
+                            }
+                            else{
+                                console.log("False")
+                            }
+                        
+                        },
+                        'error' : function(request,error) {
+                            console.log("Request: "+JSON.stringify(request));
+                        }
+                        
+                    });
+    }
 $("#login").on('click', function(){
     console.log( "User = " + $("#username").val() );
     console.log( "Pass = " + $("#password").val() );
     var checkuser = $("#username").val();
     var checkpass = String($("#password").val());
-    verifylogin(checkuser,checkpass,verify);
+    xverifylogin("nsampemane","7");
     
 });
 
