@@ -20,7 +20,7 @@ function verify(verified, username){
     }
     else {
         console.log("verified");
-        if (username == 'admin') {
+        if (username == 'admin@scu.edu') {
             window.location.replace("http://students.engr.scu.edu/~nsampema/html/admindash.php");
         }
         else {
