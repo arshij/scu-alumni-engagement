@@ -1,6 +1,5 @@
 <?php
 include '../session.php';
-echo "working";
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@ echo "working";
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color: #99303E;">
         <div class="container">
-            <a class="navbar-brand" href="alumnidash.html">SCU Alumni Events</a>
+            <a class="navbar-brand" href="alumnidash.php">SCU Alumni Events</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,10 +37,10 @@ echo "working";
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="alumnicreate.html">Create an Event</a>
+              <a class="nav-link" href="alumnicreate.php">Create an Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="logout" href="index.html">Logout</a>
+              <a class="nav-link" id="logout" href="../index.html">Logout</a>
             </li>
                 </ul>
             </div>

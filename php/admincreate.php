@@ -1,7 +1,6 @@
 
 <?php
 include '../session.php';
-echo "working";
 
 ?>
 
@@ -29,26 +28,26 @@ echo "working";
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color: #99303E;">
         <div class="container">
-            <a class="navbar-brand" href="admindash.html">SCU Alumni Events</a>
+            <a class="navbar-brand" href="admindash.php">SCU Alumni Events</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="admindash.html">Home
+              <a class="nav-link" href="admindash.php">Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="adminapprove.html">Approve Events
+              <a class="nav-link" href="adminapprove.php">Approve Events
               </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="admincreate.html">Create an Event</a>
+              <a class="nav-link" href="admincreate.php">Create an Event</a>
                 <span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="logout" href="index.html">Logout <strong>ADMIN</strong></a>
+              <a class="nav-link" id="logout" href="../index.html">Logout <strong>ADMIN</strong></a>
             </li>
                 </ul>
             </div>
