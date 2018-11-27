@@ -5,18 +5,14 @@
         </title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     </head>
-    <body onload="verifylogin('nsampemane','7');">
-        
-        <script>
-            function verifylogin(username,studentid) {
-/*
- * Parameters:      username,studentid,verify
- * 
- * Description:	   Allows the verification of a user
- */
-
-	console.log("attempting login");
     
+    <!--<body onload="verifylogin('nsampemane','7');">-->
+    <body>
+    <button id="login">Login</button>
+    <script>
+        
+    function verifylogin(username,studentid) {
+	   console.log("attempting login");
                 $.ajax({
                     cache: false,
                     'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
@@ -36,19 +32,24 @@
 						else{
 							console.log("False")
 						}
-					
                     },
                     'error' : function(request,error) {
                         console.log("Request: "+JSON.stringify(request));
                     }
                     
                 });
-}
+    }
+        
+    $(document).ready(function() {
+        
+        $("#login").click(function() {
+            console.log("TESTING nsampemane");
+            verifylogin("nsampemane","7");
+            console.log("TESTING incorrect input");
+            verifylogin("jane","123");
+        });
+    });
 
-
-            
-
-          
         </script>
     </body>
 </html> 
