@@ -1,5 +1,6 @@
 <?php
 include 'session.php';
+include 'alumnicheck.php';
 
 ?>
 <!DOCTYPE html>
