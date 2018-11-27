@@ -1,5 +1,4 @@
 <?php
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if (key_exists('query', $_POST)) {
@@ -11,7 +10,8 @@
 		   $studentid = $_POST['studentid'];
 		   $response = '{"authenticated": "False"}';
 		   if(verify_user($username,$studentid)){
-            $_SESSION['user_id'] = $username;
+            //session_start();
+            //$_SESSION['user_id'] = $username;
 			$response = '{"authenticated": "True"}';
             
 		   }
