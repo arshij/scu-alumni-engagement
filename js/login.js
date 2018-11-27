@@ -67,12 +67,13 @@ function xverifylogin(username,studentid) {
     }
 
 $(document).ready(function() {
-    $("#login").click(function() {
+    $("#login").click(function(e) {
         console.log( "User = " + $("#username").val() );
         console.log( "Pass = " + $("#password").val() );
         var checkuser = $("#username").val();
         var checkpass = String($("#password").val());
         xverifylogin("nsampemane","7");
+        return False;
     });
 });
 
