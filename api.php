@@ -1,24 +1,24 @@
 <?php
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if (key_exists('query', $_POST)) {
-	
             $response = '';
             switch ($_POST['query']) {
-		case 'login':
+        case 'login':
+            
 		   $username = $_POST['username'];
 		   $studentid = $_POST['studentid'];
 		   $response = '{"authenticated": "False"}';
 		   if(verify_user($username,$studentid)){
+            $_SESSION['user_id'] = $username;
 			$response = '{"authenticated": "True"}';
-		   
+            
 		   }
 		   echo $response;
         break;
             
         case 'create':
-                   
-                    
         $eventdate =  $_POST['eventdate'];
         $eventtime  =$_POST['eventtime'];
         $eventname  =$_POST['eventname'];

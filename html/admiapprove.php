@@ -1,7 +1,10 @@
 
+<?php
+include '../session.php';
+echo "working";
 
+?>
 <!DOCTYPE html>
-
 <html lang="en">
 
   <head>

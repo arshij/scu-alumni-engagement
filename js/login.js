@@ -12,6 +12,32 @@ $("#showpassword").on('click', function(){
     }	
 });
 
+function verify(verified, username){
+   console.log(username);
+    if (!verified) {
+        console.log("unverified");
+        window.alert("Unverified user");
+    }
+    else {
+        console.log("verified");
+        if (username == 'admin') {
+            window.location.replace("http://students.engr.scu.edu/~nsampema/html/admindash.html");
+        }
+        else {
+            window.location.replace("http://students.engr.scu.edu/~nsampema/html/alumnidash.html");
+        }     
+    }
+}
+
+$("#login").on('click', function(){
+    console.log( "User = " + $("#username").val() );
+    console.log( "Pass = " + $("#password").val() );
+    var checkuser = $("#username").val();
+    var checkpass = String($("#password").val());
+    verifylogin(checkuser,checkpass,verify);
+    
+});
+
 /* Stuff I was testing with, can change/delete
 $("#login").on('click', function(){
     console.log( "User = " + $("#username").val() );

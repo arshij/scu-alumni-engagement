@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>
+            Test stuff
+        </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    </head>
+    <body onload="verifylogin('nsampemane','7');">
+        
+        <script>
+            function verifylogin(username,studentid) {
+/*
+ * Parameters:      username,studentid,verify
+ * 
+ * Description:	   Allows the verification of a user
+ */
+
+	console.log("attempting login");
+    
+                $.ajax({
+                    cache: false,
+                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'type' : 'POST',
+		    		'datatype' : "JSON",
+                    'data' : {
+						'query' : 'login',
+		        		'username': username,
+						'studentid': studentid
+                    },
+                    'success' : function(data) {
+                        var parsed = JSON.parse(data)['authenticated'];
+                        console.log("calling verify")
+						if (parsed == 'True'){
+							console.log("True")
+						}
+						else{
+							console.log("False")
+						}
+					
+                    },
+                    'error' : function(request,error) {
+                        console.log("Request: "+JSON.stringify(request));
+                    }
+                    
+                });
+}
+
+
+            
+
+          
+        </script>
+    </body>
+</html> 

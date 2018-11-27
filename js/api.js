@@ -1,4 +1,12 @@
+
 function createEvent(date,time,name,description,location,postedby,email) {
+
+/*
+ * Parameters:      date,time,name,description,location,postedby,email
+ * 
+ * Description:	    Allows an admin user to create an event without it having to be approved
+ */
+
     console.log("attempting event creation");
     $.ajax({
         cache: false,
@@ -25,6 +33,12 @@ function createEvent(date,time,name,description,location,postedby,email) {
 }
 
 function createUnapproved(date,time,name,description,location,postedby,email) {
+/*
+ * Parameters:      date,time,name,description,location,postedby,email
+ * 
+ * Description:	    Allows an alumni user to create an event and send it into the approval queue
+ */
+
     console.log("attempting unapproved event creation");
     $.ajax({
         cache: false,
@@ -51,8 +65,13 @@ function createUnapproved(date,time,name,description,location,postedby,email) {
 }
 
 function verifylogin(username,studentid,verify) {
+/*
+ * Parameters:      username,studentid,verify
+ * 
+ * Description:	   Allows the verification of a user
+ */
+
 	console.log("attempting login");
-		
                 $.ajax({
                     cache: false,
                     'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
@@ -64,12 +83,13 @@ function verifylogin(username,studentid,verify) {
 						'studentid': studentid
                     },
                     'success' : function(data) {
-						var parsed = JSON.parse(data)['authenticated'];
+                        var parsed = JSON.parse(data)['authenticated'];
+                       
 						if (parsed == 'True'){
-							verify(True)
+							verify(true,username);
 						}
 						else{
-							verify(False)
+							verify(false,username);
 						}
 					
                     },
