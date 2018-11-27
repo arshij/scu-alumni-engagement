@@ -137,6 +137,11 @@ function attemptlogout() {
 
 
 function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
+/*
+ * Parameters:      eventID,firstname,lastname,gradyear,email,guestcount
+ * 
+ * Description:	  registers a user to an event
+ */
 	console.log("attempting event regisration");
 	$.ajax({
 		cache: false,
@@ -163,6 +168,11 @@ function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
 }
 
 function viewEvents(filltable) {
+	/*
+ * Parameters:      filltable closure function
+ * 
+ * Description:	  pulls list of all events and passes to filltable
+ */
 	console.log("attempting collection of events");
 		parsed =[]
                 $.ajax({
@@ -185,6 +195,11 @@ function viewEvents(filltable) {
 }
 
 function viewApproved(filltable) {
+	/*
+ * Parameters:      filltable closure function
+ * 
+ * Description:	  pulls list of approved events and passes to filltable
+ */
 	console.log("attempting collection of approved events");
 		parsed =[]
                 $.ajax({
@@ -207,6 +222,11 @@ function viewApproved(filltable) {
 }
 
 function viewUnapproved(filltable) {
+	/*
+ * Parameters:      filltable closure function
+ * 
+ * Description:	  pulls list of unapproved events and passes to filltable
+ */
 	console.log("attempting collection of unapproved events");
             $.ajax({
             cache: false,
@@ -226,6 +246,11 @@ function viewUnapproved(filltable) {
 }
 
 function viewAttendees(eventid,filltable) {
+/*
+ * Parameters:      eventid,filltable closure function
+ * 
+ * Description:	  pulls list of all attendees for a given eventid and passes to filltable function
+ */
 	console.log("attempting collection of attendees");
 		parsed =[]
                 $.ajax({
@@ -238,7 +263,7 @@ function viewAttendees(eventid,filltable) {
 			'eventid' :eventid
                     },
                     'success' : function(data) {
-			var parsed = JSON.parse(data);
+			var parsed = JSON.parse(data); pulls list of all events and passes to filltable
 			filltable(parsed);
                     },
                     'error' : function(request,error) {
@@ -249,6 +274,11 @@ function viewAttendees(eventid,filltable) {
 }
 
 function updateStatus(eventID,updatedstatus) {
+/*
+ * Parameters:      eventid, updatedstatus
+ * 
+ * Description:	 updates the status of an event, True= approve event, False = purge event from listing (for admin use)
+ */
 	$.ajax({
 		cache: false,
 		'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
