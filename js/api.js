@@ -10,7 +10,7 @@ function createEvent(date,time,name,description,location,postedby,email) {
     console.log("attempting event creation");
     $.ajax({
         cache: false,
-        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+        'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
         'type' : 'POST',
         'data' : {
 			'query' : 'create',
@@ -42,7 +42,7 @@ function createUnapproved(date,time,name,description,location,postedby,email) {
     console.log("attempting unapproved event creation");
     $.ajax({
         cache: false,
-        'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+        'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
         'type' : 'POST',
         'data' : {
 			'query' : 'createunapproved',
@@ -80,7 +80,7 @@ function verifylogin(username,studentid,verify) {
                 
                 $.ajax({
                     cache: false,
-                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
                     'type' : 'POST',
 		    		'datatype' : "JSON",
                     'data' : {
@@ -110,7 +110,7 @@ function registerEvent(eventID,firstname,lastname,gradyear,email,guestcount) {
 	console.log("attempting event regisration");
 	$.ajax({
 		cache: false,
-		'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+		'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
 		'type' : 'POST',
 		'data' : {
 		'query' : 'register',
@@ -137,7 +137,7 @@ function viewEvents(filltable) {
 		parsed =[]
                 $.ajax({
                     cache: false,
-                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
                     'type' : 'POST',
 		    'datatype' : "JSON",
                     'data' : {
@@ -159,7 +159,7 @@ function viewApproved(filltable) {
 		parsed =[]
                 $.ajax({
                     cache: false,
-                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
                     'type' : 'POST',
 		    		'datatype' : "JSON",
                     'data' : {
@@ -180,7 +180,7 @@ function viewUnapproved(filltable) {
 	console.log("attempting collection of unapproved events");
             $.ajax({
             cache: false,
-            'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+            'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
             'type' : 'POST',
             'data' : {
 				'query' : 'getunapproved'
@@ -200,7 +200,7 @@ function viewAttendees(eventid,filltable) {
 		parsed =[]
                 $.ajax({
                     cache: false,
-                    'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+                    'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
                     'type' : 'POST',
 		    'datatype' : "JSON",
                     'data' : {
@@ -221,7 +221,7 @@ function viewAttendees(eventid,filltable) {
 function updateStatus(eventID,updatedstatus) {
 	$.ajax({
 		cache: false,
-		'url' : 'http://students.engr.scu.edu/~nsampema/api.php',
+		'url' : 'http://students.engr.scu.edu/~nsampema/php/api.php',
 		'type' : 'POST',
 		'data' : {
 		'query' : 'updatestatus',
