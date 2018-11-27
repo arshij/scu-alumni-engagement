@@ -43,7 +43,7 @@ include 'session.php';
               <a class="nav-link" href="admincreate.php">Create an Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="logout" href="../index.html">Logout <strong>ADMIN</strong></a>
+              <a class="nav-link" id="logout" onclick="attemptlogout()" href="#">Logout <strong>ADMIN</strong></a>
             </li>
                 </ul>
             </div>

@@ -1,5 +1,5 @@
 <?php
-sessionstart();
+session_start();
 
 if ( isset( $_SESSION['user_id'] ) ) {
      //Grab user data from the database using the user_id
